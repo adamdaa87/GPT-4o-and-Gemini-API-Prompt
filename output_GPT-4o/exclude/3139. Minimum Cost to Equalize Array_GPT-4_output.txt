@@ -1,0 +1,33 @@
+from typing import List
+
+class Solution:
+    def minCostToEqualizeArray(self, nums: List[int], cost1: int, cost2: int) -> int:
+        MOD = 10**9 + 7
+        
+        def cost_to_make_equal(target: int) -> int:
+            total_cost = 0
+            for num in nums:
+                diff = abs(num - target)
+                pairs = diff // 2
+                remainder = diff % 2
+                # Using the cheaper option to add the numbers
+                if cost2 < 2 * cost1:
+                    total_cost += pairs * cost2 + remainder * cost1
+                else:
+                    total_cost += diff * cost1
+            return total_cost
+        
+        left, right = min(nums), max(nums)
+        
+        while left < right:
+            mid1 = left + (right - left) // 3
+            mid2 = right - (right - left) // 3
+            cost1 = cost_to_make_equal(mid1)
+            cost2 = cost_to_make_equal(mid2)
+            
+            if cost1 < cost2:
+                right = mid2 - 1
+            else:
+                left = mid1 + 1
+
+        return cost_to_make_equal(left) % MOD

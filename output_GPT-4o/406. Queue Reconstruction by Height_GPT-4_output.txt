@@ -1,0 +1,17 @@
+class Solution(object):
+    def reconstructQueue(self, people):
+        """
+        :type people: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        # Sort people to ensure that the tallest person with the fewest number of people in front comes first
+        # If two people have the same height, the one with fewer people in front comes first
+        people.sort(key=lambda x: (-x[0], x[1]))
+        
+        queue = []
+        
+        for person in people:
+            # Insert the person into the queue based on the number of people that should be in front
+            queue.insert(person[1], person)
+        
+        return queue

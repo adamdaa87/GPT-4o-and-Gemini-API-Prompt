@@ -1,0 +1,23 @@
+from typing import List
+import bisect
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int], k: int) -> int:
+        # Initialize a list to store the length of the longest subsequence at each index
+        max_len = {}
+        result = 0
+
+        for num in nums:
+            # Look back to see valid elements within the range num - k to num - 1
+            max_seq_len = 0
+            for j in range(num - k, num):
+                if j in max_len:
+                    max_seq_len = max(max_seq_len, max_len[j])
+            
+            # Update the current number's longest subsequence length
+            max_len[num] = max_seq_len + 1
+            
+            # Update the result with the maximum length found
+            result = max(result, max_len[num])
+        
+        return result

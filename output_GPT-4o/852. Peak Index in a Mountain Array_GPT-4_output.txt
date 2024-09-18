@@ -1,0 +1,20 @@
+from typing import List
+
+class Solution:
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        low, high = 0, len(arr) - 1
+        
+        while low < high:
+            mid = low + (high - low) // 2
+            
+            # If the middle element is less than the next element, 
+            # then the peak is in the right part of the array
+            if arr[mid] < arr[mid + 1]:
+                low = mid + 1
+            else:
+                # If the middle element is greater than the next element,
+                # the peak is in the left part including mid
+                high = mid
+                
+        # When low equals high, we found the peak index
+        return low

@@ -1,0 +1,51 @@
+class Solution(object):
+    def numDistinctIslands2(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def dfs(x, y, coordinates):
+            # Directions for movement: up, down, left, right
+            directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+            # Mark this cell as visited by turning 1 into 0
+            grid[x][y] = 0
+            # Add current cell to the island's coordinates list
+            coordinates.append((x, y))
+            # Try all 4 possible directions
+            for dx, dy in directions:
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]) and grid[nx][ny] == 1:
+                    dfs(nx, ny, coordinates)
+        
+        def normalize(coordinates):
+            # Set of all transformed shapes
+            transforms = []
+            for x, y in coordinates:
+                transforms.append([(x, y), (-x, y), (x, -y), (-x, -y), (y, x), (-y, x), (y, -x), (-y, -x)])
+            
+            def canonize(shape):
+                base = sorted(shape)
+                mx, my = base[0]
+                return sorted((x - mx, y - my) for x, y in base)
+            
+            unique_shapes = set()
+            for i in range(8):  # There are 8 possible transformations
+                shape = [trans[i] for trans in transforms]
+                unique_shapes.add(tuple(canonize(shape)))
+            
+            # Return sorted tuple of the smallest form of the shapes
+            return min(unique_shapes)
+        
+        distinct_islands = set()
+        
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 1:
+                    # Gather the island coordinates
+                    coordinates = []
+                    dfs(i, j, coordinates)
+                    # Normalize and add the canonical form to the set
+                    canonical_shape = normalize(coordinates)
+                    distinct_islands.add(canonical_shape)
+        
+        return len(distinct_islands)

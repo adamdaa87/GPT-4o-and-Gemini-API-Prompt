@@ -1,0 +1,53 @@
+from typing import Optional
+
+class ListNode:
+    def __init__(self, val: int = 0, next: Optional['ListNode'] = None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # Helper function to merge two sorted linked lists
+        def merge(l1: ListNode, l2: ListNode) -> ListNode:
+            dummy = ListNode(0)
+            tail = dummy
+
+            while l1 and l2:
+                if l1.val < l2.val:
+                    tail.next = l1
+                    l1 = l1.next
+                else:
+                    tail.next = l2
+                    l2 = l2.next
+                tail = tail.next
+                
+            if l1:
+                tail.next = l1
+            if l2:
+                tail.next = l2
+            
+            return dummy.next
+
+        # Base case
+        if not head or not head.next:
+            return head
+
+        # Step 1. Split the linked list into two halves
+        prev = None
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            prev = slow
+            slow = slow.next
+            fast = fast.next.next
+
+        # Disconnect the left half from the right half
+        prev.next = None
+
+        # Step 2. Sort each half recursively
+        l1 = self.sortList(head)
+        l2 = self.sortList(slow)
+
+        # Step 3. Merge the sorted halves
+        return merge(l1, l2)

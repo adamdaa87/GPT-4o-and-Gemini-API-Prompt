@@ -1,0 +1,28 @@
+class Solution:
+    def minimumSubstringsInPartition(self, s: str) -> int:
+        from collections import defaultdict
+
+        def is_balanced(substring):
+            char_count = defaultdict(int)
+            for char in substring:
+                char_count[char] += 1
+            counts = list(char_count.values())
+            return all(count == counts[0] for count in counts)
+
+        n = len(s)
+        min_substrings = n  # In the worst case, each character is its own substring
+
+        # Try every possible partition and check if it's balanced
+        def partition(index, current_count):
+            nonlocal min_substrings
+            if index == n:
+                min_substrings = min(min_substrings, current_count)
+                return
+
+            for i in range(index + 1, n + 1):
+                substring = s[index:i]
+                if is_balanced(substring):
+                    partition(i, current_count + 1)
+
+        partition(0, 0)
+        return min_substrings

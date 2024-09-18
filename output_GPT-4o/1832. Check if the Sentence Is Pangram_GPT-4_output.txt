@@ -1,0 +1,10 @@
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        # Create a set of all alphabet letters
+        alphabet_set = set('abcdefghijklmnopqrstuvwxyz')
+        
+        # Create a set of characters found in the input sentence
+        sentence_set = set(sentence)
+        
+        # Check if all alphabet letters are present in the sentence set
+        return alphabet_set.issubset(sentence_set)

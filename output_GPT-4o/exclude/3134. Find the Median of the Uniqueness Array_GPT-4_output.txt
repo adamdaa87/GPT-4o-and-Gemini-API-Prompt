@@ -1,0 +1,25 @@
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def medianOfUniquenessArray(self, nums: List[int]) -> int:
+        n = len(nums)
+        uniqueness_values = []
+        
+        for start in range(n):
+            unique_count = 0
+            seen = defaultdict(int)
+            
+            for end in range(start, n):
+                if seen[nums[end]] == 0:
+                    unique_count += 1
+                seen[nums[end]] += 1
+                
+                uniqueness_values.append(unique_count)
+        
+        # Sort the uniqueness values to find the median
+        uniqueness_values.sort()
+        
+        # Calculate the median
+        mid_idx = len(uniqueness_values) // 2
+        return uniqueness_values[mid_idx]

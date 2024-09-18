@@ -1,0 +1,36 @@
+class Solution:
+    def countRectangles(self, rectangles: List[List[int]], points: List[List[int]]) -> List[int]:
+        from collections import defaultdict
+        
+        # Create a dictionary to group rectangles by their heights
+        height_map = defaultdict(list)
+        
+        for l, h in rectangles:
+            height_map[h].append(l)
+        
+        # Sort the lengths for each height
+        for h in height_map:
+            height_map[h].sort()
+
+        result = []
+        for x, y in points:
+            count = 0
+            # Check only those rectangles whose height is at least y
+            for h in range(y, 101):
+                if h in height_map:
+                    lengths = height_map[h]
+                    # Find the number of lengths >= x by binary search
+                    left = 0
+                    right = len(lengths)
+                    while left < right:
+                        mid = (left + right) // 2
+                        if lengths[mid] >= x:
+                            right = mid
+                        else:
+                            left = mid + 1
+                    
+                    count += len(lengths) - left
+            
+            result.append(count)
+        
+        return result
