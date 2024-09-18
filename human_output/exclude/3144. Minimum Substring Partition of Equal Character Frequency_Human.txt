@@ -1,0 +1,17 @@
+from collections import Counter
+class Solution:
+    def isBalanced(self, charFreq):
+        # Inspired by : lee215
+        return len(set(charFreq.values())) == 1 
+
+    def minimumSubstringsInPartition(self, S):
+        N = len(S)
+        DP = [N] * N
+        for END in range(N):
+            charFreq = Counter()
+            for START in range(END, -1, -1):
+                charFreq[S[START]] += 1
+                if self.isBalanced(charFreq):
+                    DP[END] = min(DP[END], 1 + DP[START - 1] if START > 0 else 1)
+
+        return DP[N - 1]

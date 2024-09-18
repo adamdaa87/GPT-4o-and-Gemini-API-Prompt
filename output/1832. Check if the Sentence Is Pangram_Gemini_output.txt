@@ -1,0 +1,12 @@
+class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        # Create a set to store the unique letters seen in the sentence.
+        seen = set()
+
+        # Iterate through each character in the sentence.
+        for char in sentence:
+            # Add the character to the set.
+            seen.add(char)
+
+        # Check if the size of the set is 26 (all letters of the alphabet).
+        return len(seen) == 26

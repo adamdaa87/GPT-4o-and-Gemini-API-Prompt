@@ -1,0 +1,21 @@
+class Solution:
+    def countRectangles(self, rectangles: List[List[int]], points: List[List[int]]) -> List[int]:
+        # Sort rectangles by height in descending order
+        rectangles.sort(key=lambda x: x[1], reverse=True)
+        
+        # Create a list to store the count for each point
+        count = [0] * len(points)
+        
+        # Iterate over the points
+        for j, (x, y) in enumerate(points):
+            # Iterate over the rectangles
+            for i, (l, h) in enumerate(rectangles):
+                # If the rectangle's height is less than the point's y-coordinate,
+                # we can break the loop since no further rectangles will contain the point
+                if h < y:
+                    break
+                # If the rectangle contains the point, increment the count
+                if l >= x and h >= y:
+                    count[j] += 1
+        
+        return count

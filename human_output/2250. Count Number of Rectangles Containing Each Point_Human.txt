@@ -1,0 +1,9 @@
+from collections import defaultdict
+import bisect
+class Solution:
+    def countRectangles(self, rectangles: List[List[int]], points: List[List[int]]) -> List[int]:
+        rectangles.sort()
+        length = defaultdict(list)
+        for l, h in rectangles:
+            length[h].append(l)
+        return [sum(len(length[h]) - bisect.bisect_left(length[h], x) for h in range(y, 101)) for x, y in points]

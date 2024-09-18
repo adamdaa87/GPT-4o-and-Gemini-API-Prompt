@@ -1,0 +1,14 @@
+class Solution:
+    def medianOfUniquenessArray(self, nums: List[int]) -> int:
+        n = len(nums)
+        uniqueness = []
+
+        for i in range(n):
+            distinct_count = set()
+            for j in range(i, n):
+                distinct_count.add(nums[j])
+                uniqueness.append(len(distinct_count))
+
+        uniqueness.sort()
+        median_index = len(uniqueness) // 2
+        return uniqueness[median_index]

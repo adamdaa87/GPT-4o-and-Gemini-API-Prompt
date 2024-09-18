@@ -1,0 +1,13 @@
+class Solution:
+    def lengthOfLIS(self, nums: List[int], k: int) -> int:
+        dp = [1] * len(nums)  # Initialize dp array with 1s (each element is a subsequence of length 1)
+        max_length = 1  # Initialize the maximum length
+
+        for i in range(1, len(nums)):
+            for j in range(i):
+                # Check for valid increasing subsequence with difference at most k
+                if nums[i] > nums[j] and nums[i] - nums[j] <= k:
+                    dp[i] = max(dp[i], dp[j] + 1)  # Update dp[i] to the maximum length
+            max_length = max(max_length, dp[i])  # Update the overall maximum length
+
+        return max_length

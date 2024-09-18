@@ -1,0 +1,32 @@
+class Solution(object):
+    def numDistinctIslands2(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        m, n = len(grid), len(grid[0])
+        shapes = set()
+
+        def dfs(r, c, r0, c0):
+            grid[r][c] = 0  # Mark the cell as visited
+            shape.add((r - r0, c - c0))  # Add relative coordinates to the shape
+            for dr, dc in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == 1:
+                    dfs(nr, nc, r0, c0)
+
+        for r in range(m):
+            for c in range(n):
+                if grid[r][c] == 1:
+                    shape = set()
+                    dfs(r, c, r, c)
+                    canonical_shapes = [shape]
+                    # Generate rotations
+                    for _ in range(3):
+                        canonical_shapes.append(set([(y, -x) for x, y in canonical_shapes[-1]]))
+                    # Generate reflections
+                    canonical_shapes.append(set([(-x, y) for x, y in canonical_shapes[0]]))
+                    canonical_shapes.append(set([(x, -y) for x, y in canonical_shapes[0]]))
+                    # Add the canonical shape to the overall set
+                    shapes.add(frozenset(min(canonical_shapes, key=lambda x: min(a + b * 101 for a, b in x))))
+        return len(shapes)

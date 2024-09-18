@@ -1,0 +1,40 @@
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # If the list is empty or has one node, it's already sorted
+        if not head or not head.next:
+            return head
+
+        # Find the middle of the list using slow and fast pointers
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Split the list into two halves at the middle
+        mid = slow.next
+        slow.next = None
+
+        # Recursively sort the two halves
+        left = self.sortList(head)
+        right = self.sortList(mid)
+
+        # Merge the sorted halves
+        return self.mergeTwoLists(left, right)
+
+    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)  # Dummy node to simplify operations
+        tail = dummy
+
+        while l1 and l2:
+            if l1.val < l2.val:
+                tail.next = l1
+                l1 = l1.next
+            else:
+                tail.next = l2
+                l2 = l2.next
+            tail = tail.next
+
+        # Append the remaining nodes from either list
+        tail.next = l1 if l1 else l2
+
+        return dummy.next

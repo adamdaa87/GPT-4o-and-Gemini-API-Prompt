@@ -1,0 +1,39 @@
+from bisect import bisect_left
+class Solution:
+    def minCostToEqualizeArray(self, nums: List[int], cost1: int, cost2: int) -> int:
+        n = len(nums)
+        MOD = 10**9 + 7
+
+        # Calculate the total cost to increase all elements to value x
+        def calculate_cost(x):
+            total_cost = 0
+            single_increments = 0
+            for num in nums:
+                diff = abs(num - x)
+                total_cost += diff * cost1
+                single_increments += diff
+            
+            # Use as many double increments as possible
+            double_increments = min(single_increments // 2, n // 2)
+            total_cost -= double_increments * (2 * cost1 - cost2)
+            return total_cost
+        
+        # Binary search to find the optimal target value
+        left = min(nums)
+        right = max(nums)
+        min_cost = float('inf')
+        while left <= right:
+            mid = (left + right) // 2
+            cost_mid = calculate_cost(mid)
+            cost_left = calculate_cost(mid - 1) if mid > left else float('inf')
+            cost_right = calculate_cost(mid + 1) if mid < right else float('inf')
+            
+            min_cost = min(min_cost, cost_mid)
+            if cost_left < cost_mid:
+                right = mid - 1
+            elif cost_right < cost_mid:
+                left = mid + 1
+            else:
+                break
+
+        return min_cost % MOD

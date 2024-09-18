@@ -1,0 +1,19 @@
+class Solution:
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        left, right = 0, len(arr) - 1
+
+        while left < right:
+            mid = (left + right) // 2
+
+            # Check if mid is the peak by comparing with its neighbors
+            if arr[mid - 1] < arr[mid] and arr[mid] > arr[mid + 1]:
+                return mid
+            elif arr[mid] < arr[mid + 1]: 
+                # If mid is smaller than its right neighbor, the peak is on the right side
+                left = mid + 1
+            else:
+                # If mid is smaller than its left neighbor, the peak is on the left side
+                right = mid 
+
+        # At this point left == right, which is the index of the peak element
+        return left
