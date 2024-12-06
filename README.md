@@ -89,10 +89,20 @@ The script also computes the efficiency distance for each model relative to the 
 ---
 
 ### Notes:
-- Replace all placeholders (e.g., `<your-openai-api-key>`) with actual values before running the scripts.
 - Ensure all required files are in the correct directories as referenced by the scripts.
+- You need to run "Framework Testing.py" three times and save the execution_time_results.txt file with a different name and extension for each model, like this: 
+  Execution_time_1_Gemini.txt
+  Execution_time_2_Gemini.txt
+  Execution_time_3_Gemini.txt
 
-This guide should provide a straightforward process to run the provided scripts on a Windows machine. Let me know if further clarification is needed!
+  Execution_time_1_Human.txt
+  Execution_time_2_Human.txt
+  Execution_time_3_Human.txt
 
+  Execution_time_1_GPT-4o.txt
+  Execution_time_2_GPT-4o.txt
+  Execution_time_2_GPT-4o.txt
 
+  Then, move the files to a new folder, ensure the execution_times.py script is configured to point to the correct directory, and run it to calculate the average distances.
 
+This guide should provide a straightforward process to run the provided scripts on a Windows machine.
