@@ -101,7 +101,7 @@ def extract_and_save_code(content):
 #------------------------------------------------------------------------------------------
 # Specify the input and output directories for processing
 input_dir = r'C:\Users\Asus\Desktop\Gemini API Test\input'
-output_dir = r'C:\Users\Asus\Desktop\Gemini API Test\output'
+output_dir = r'C:\Users\Asus\Desktop\Gemini API Test\output_Gemini'
 
 # Run the asynchronous file processing function
 asyncio.run(generate_from_file(input_dir, output_dir))

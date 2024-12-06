@@ -4,13 +4,13 @@ import types
 from typing import List, Optional  # Correctly import List and Optional from the typing module
 from collections import defaultdict  # Ensure defaultdict is available
 
-BASE_SOLUTION_PATH = 'C:\\Users\\Asus\\Desktop\\Gemini API Test\\output'  # Set this to the appropriate path
-FILE_EXTENSION = '_Gemini_output'  # Base part of the file extension to match
+#BASE_SOLUTION_PATH = r'C:\Users\Asus\Desktop\GPT-4o-and-Gemini-API-Prompt\output_Gemini'  # Set this to the appropriate path
+#FILE_EXTENSION = '_Gemini_output'  # Base part of the file extension to match
 
-#BASE_SOLUTION_PATH = 'C:\\Users\\Asus\\Desktop\\GPT-4-API-Prompt\\output_v2'  # Set this to the appropriate path
-#FILE_EXTENSION = '_GPT-4_output'  # Base part of the file extension to match
+BASE_SOLUTION_PATH = r'C:\Users\Asus\Desktop\GPT-4o-and-Gemini-API-Prompt\output_GPT-4o'  # Set this to the appropriate path
+FILE_EXTENSION = '_GPT-4_output'  # Base part of the file extension to match
 
-#BASE_SOLUTION_PATH = 'C:\\Users\\Asus\\Desktop\\Gemini API Test\\human_output'  # Set this to the appropriate path
+#BASE_SOLUTION_PATH = r'C:\Users\Asus\Desktop\GPT-4o-and-Gemini-API-Prompt\human_output'  # Set this to the appropriate path
 #FILE_EXTENSION = '_Human'  # Base part of the file extension to match
 
 class ListNode:
