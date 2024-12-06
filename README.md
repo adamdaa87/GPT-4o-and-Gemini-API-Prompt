@@ -46,9 +46,9 @@ The script also computes the efficiency distance for each model relative to the 
      ```
    - These scripts will process the prompts in the `input` folder and save the solutions in their respective `output` folders.
 
-5. **Load Solutions Dynamically**:
-   - This script will be called automatically by the `Framwork_Testing.by` script to load and execute the saved solutions dynamically 
-     Don't forget to choose the right ASE_SOLUTION_PATH and FILE_EXTENSION based on LLM model by commenting out the unwanted directories and uncommenting the current model.
+5. **Load Solutions Dynamically using 'dynamic_loader.py'**:
+   - The 'dynamic_loader.py' script will be called automatically by the `Framwork_Testing.by` script to load and execute the saved solutions dynamically 
+     but don't forget to choose the right ASE_SOLUTION_PATH and FILE_EXTENSION based on LLM model by commenting out the unwanted directories and uncommenting the current model.
 
      ```cmd   
      #BASE_SOLUTION_PATH = r'C:\Users\Asus\Desktop\GPT-4o-and-Gemini-API-Prompt\output_Gemini'  # Set this to the appropriate path
