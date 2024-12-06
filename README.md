@@ -33,7 +33,7 @@ The script also computes the efficiency distance for each model relative to the 
    - Ensure `output` directories are prepared for each script to store results:
      - Example paths:
        - For Gemini: `C:\Users\Asus\Desktop\Gemini_API_Test\output_Gemini`
-       - For GPT-4: `C:\Users\Asus\Desktop\GPT-4-API-Prompt\output_GPT-4o
+       - For GPT-4: `C:\Users\Asus\Desktop\GPT-4-API-Prompt\output_GPT-4o`
 
 4. **Run the Prompting Scripts**:
    - For Gemini 1.5 Pro:
