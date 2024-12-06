@@ -91,17 +91,17 @@ The script also computes the efficiency distance for each model relative to the 
 ### Notes:
 - Ensure all required files are in the correct directories as referenced by the scripts.
 - You need to run "Framework Testing.py" three times and save the execution_time_results.txt file with a different name and extension for each model, like this: 
-  Execution_time_1_Gemini.txt
-  Execution_time_2_Gemini.txt
-  Execution_time_3_Gemini.txt
+  Execution_time_1_Gemini.txt,
+  Execution_time_2_Gemini.txt,
+  Execution_time_3_Gemini.txt,
 
-  Execution_time_1_Human.txt
-  Execution_time_2_Human.txt
-  Execution_time_3_Human.txt
+  Execution_time_1_Human.txt,
+  Execution_time_2_Human.txt,
+  Execution_time_3_Human.txt,
 
-  Execution_time_1_GPT-4o.txt
-  Execution_time_2_GPT-4o.txt
-  Execution_time_2_GPT-4o.txt
+  Execution_time_1_GPT-4o.txt,
+  Execution_time_2_GPT-4o.txt,
+  Execution_time_2_GPT-4o.txt,
 
   Then, move the files to a new folder, ensure the execution_times.py script is configured to point to the correct directory, and run it to calculate the average distances.
 
