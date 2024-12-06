@@ -46,9 +46,9 @@ The script also computes the efficiency distance for each model relative to the 
      ```
    - These scripts will process the prompts in the `input` folder and save the solutions in their respective `output` folders.
 
-5. **Load Solutions Dynamically using 'dynamic_loader.py'**:
+5. **Update this script before testing 'dynamic_loader.py'**:
    - The 'dynamic_loader.py' script will be called automatically by the `Framwork_Testing.by` script to load and execute the saved solutions dynamically 
-     but don't forget to choose the right ASE_SOLUTION_PATH and FILE_EXTENSION based on LLM model by commenting out the unwanted directories and uncommenting the current model.
+     but don't forget to choose the right BASE_SOLUTION_PATH and FILE_EXTENSION based on the LLM model by commenting out the unwanted directories and uncommenting the current model.
 
      ```cmd   
      #BASE_SOLUTION_PATH = r'C:\Users\Asus\Desktop\GPT-4o-and-Gemini-API-Prompt\output_Gemini'  # Set this to the appropriate path
@@ -60,21 +60,29 @@ The script also computes the efficiency distance for each model relative to the 
      #BASE_SOLUTION_PATH = r'C:\Users\Asus\Desktop\GPT-4o-and-Gemini-API-Prompt\human_output'  # Set this to the appropriate path
      #FILE_EXTENSION = '_Human'  # Base part of the file extension to match
      ```
-7. **Evaluate with Framework Testing**:
+7. **Evaluate with 'Framework Testing.py'**:
+   - Comment out the unused models and uncomment the model you want to use to ensure the correct summary is printed in the terminal.
+
+     ```cmd
+     # Print the summary with a timestamp
+     #model_name = "gemini-1.5-pro-001"
+     model_name = "gpt-4o-2024-08-06"
+     #model_name = "Human Solutions"  
+     ``` 
    - Run `Framwork_Testing.py` to evaluate the solutions by performing unit tests, calculating the `pass@1` metric, and recording execution times:
      ```cmd
      python Framwork_Testing.py
      ```
-   - The results will include pass/fail statuses and execution times for each solution.
+   - The results will include pass/fail statuses and execution times for each solution, and you can repeat this process 3 times and you will get .
 
-8. **Analyze Execution Times**:
+9. **Analyze Execution Times**:
    - Execute the `execution_times.py` script to process and visualize the execution time data:
      ```cmd
      python execution_times.py
      ```
    - This script computes averages, identifies the best execution times, and generates comparative plots using Matplotlib.
 
-9. **Review the Results**:
+10. **Review the Results**:
    - Inspect the generated output files and visualizations:
      - Execution times: `execution_time_results.txt`
      - Comparison plots: Displayed as Matplotlib charts.
